@@ -1,0 +1,31 @@
+<h1>Admin panel</h1>
+<section class="admin-panel">
+  <div class="admin-panel-header">
+    <div class="admin-panel-header__item">Username</div>
+    <div class="admin-panel-header__item">First name</div>
+    <div class="admin-panel-header__item">Surname</div>
+    <div class="admin-panel-header__item">Email</div>
+    <div class="admin-panel-header__item">Type</div>
+    <div class="admin-panel-header__item">Edit</div>
+  </div>
+  <div *ngFor="let user of users" class="admin-panel-row">
+    <div class="admin-panel-row__item">
+      {{user.username}}
+    </div>
+    <div class="admin-panel-row__item">
+      {{user.firstName}}
+    </div>
+    <div class="admin-panel-row__item">
+      {{user.surname}}
+    </div>
+    <div class="admin-panel-row__item">
+      {{user.email}}
+    </div>
+    <div class="admin-panel-row__item">
+      {{user.type}}
+    </div>
+    <div class="admin-panel-row__item">
+      <a class="mdi mdi-account-edit" href=""></a>
+    </div>
+  </div>
+</section>

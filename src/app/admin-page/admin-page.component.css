@@ -1,0 +1,15 @@
+.admin-panel{
+  display: table;
+}
+.admin-panel-header{
+  display: table-row ;
+  background-color: #9E9E9E;
+  color:#fff;
+}
+.admin-panel-row{
+  display: table-row ;
+}
+.admin-panel-header__item, .admin-panel-row__item{
+  display: table-cell;
+  padding:10px;
+}
