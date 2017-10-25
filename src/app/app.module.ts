@@ -1,10 +1,12 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
-import {RouterModule, Routes} from '@angular/router';
 import {HttpModule} from '@angular/http';
+import {FormsModule} from '@angular/forms';
 
+
+import {AuthService} from './_services/auth.service';
+import {AuthGuard} from './_guards/auth.guard';
 import {UserService} from './_services/user.service';
-import {AuthenticationService} from './_services/authentication.service';
 import {AppComponent} from './app.component';
 import {AppRoutingModule} from './app-routing.module';
 import {HomeComponent} from './home/home.component';
@@ -18,6 +20,7 @@ import {AdminPageComponent} from './admin-page/admin-page.component';
 @NgModule({
   imports: [
     BrowserModule,
+    FormsModule,
     AppRoutingModule,
     HttpModule
   ],
@@ -30,7 +33,7 @@ import {AdminPageComponent} from './admin-page/admin-page.component';
     AdminPageComponent,
     SignupComponent
   ],
-  providers: [AuthenticationService, UserService],
+  providers: [AuthGuard, AuthService, UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

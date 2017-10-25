@@ -1,11 +1,20 @@
-<h1>Login</h1>
-<form action="" class="form">
-  <label class="form__label"> Username
-    <input type="text" class="form__input">
-  </label>
-  <label class="form__label"> Password
-    <input type="password" class="form__input">
-  </label>
-  <button type="submit" class="btn">Login</button>
-</form>
-<a class="" href="/signup">Register</a>
+<div class="o-container">
+  <h1>Login</h1>
+  <form action="" class="form" name="login-form" (ngSubmit)="f.form.valid && login()" #f="ngForm" novalidate>
+    <label class="form__label"> Username
+      <input type="text" class="form__input" name="username" [(ngModel)]="model.username" #username="ngModel" required>
+    </label>
+    <div *ngIf="f.submitted && !username.valid" class="help-block">Username is required</div>
+    <label class="form__label"> Password
+      <input type="password" class="form__input" name="password"  [(ngModel)]="model.password" #password="ngModel" required>
+    </label>
+    <div *ngIf="f.submitted && !password.valid" class="help-block">Password is required</div>
+    <button type="submit" class="btn">Login</button>
+    <div class="form__info">
+      Don't have an Account?
+      <a class="" href="/signup">Register</a>
+    </div>
+  </form>
+  <div *ngIf="error" class="message message_error">{{error}}</div>
+</div>
+

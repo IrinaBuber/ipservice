@@ -4,11 +4,17 @@
 body {
   font-family: Arial, sans-serif;
 }
+a{color:#F44336}
+a:hover,a:focus{color:#D32F2F}
 
 .o-container, .c-nav {
   display: flex;
   width: 1170px;
   margin: 0 auto;
+}
+
+.o-container{
+  flex-direction: column;
 }
 
 .o-navbar {
@@ -37,7 +43,11 @@ body {
   background-color: #fff;
   color:#F44336;
   text-decoration: none;
+}
 
+.c-nav__link:hover,.c-nav__link:focus{
+  background-color: #D32F2F;
+  color: #fff;
 }
 
 .c-nav__link_active {
@@ -62,7 +72,7 @@ body {
 .form{
   display: flex;
   flex-direction: column;
-  min-width:300px;
+  width:350px;
 }
 .form__label{
   display: flex;
@@ -74,4 +84,7 @@ body {
   border-radius: 4px;
   border: 1px solid #9E9E9E;
   padding: 4px
+}
+.form__info{
+  padding:10px 0;
 }

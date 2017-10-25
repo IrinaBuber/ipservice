@@ -1,23 +1,32 @@
-<h1>Sign Up</h1>
-<form action="" class="form">
-  <label class="form__label"> Username
-    <input type="text" class="form__input">
-  </label>
-  <label class="form__label"> First Name
-    <input type="text" class="form__input">
-  </label>
-  <label class="form__label"> Surname
-    <input type="text" class="form__input">
-  </label>
-  <label class="form__label"> Email
-    <input type="text" class="form__input">
-  </label>
-  <label class="form__label"> Password
-    <input type="password" class="form__input">
-  </label>
-  <label class="form__label"> Repeat Password
-    <input type="password" class="form__input">
-  </label>
-  <button type="submit" class="btn">Register</button>
-</form>
-<a class="" href="/login">Login</a>
+<div class="o-container">
+  <h1>Sign Up</h1>
+  <form action="" class="form" name="signup-form" (ngSubmit)="f.form.valid && signup()" #f="ngForm" novalidate>
+    <label class="form__label"> Username
+      <input type="text" class="form__input" name="username" [(ngModel)]="model.username" #username="ngModel" required>
+    </label>
+    <div *ngIf="f.submitted && !username.valid" class="help-block">Username is required</div>
+    <label class="form__label"> First Name
+      <input type="text" class="form__input">
+    </label>
+    <label class="form__label"> Surname
+      <input type="text" class="form__input">
+    </label>
+    <label class="form__label"> Email
+      <input type="text" class="form__input">
+    </label>
+    <label class="form__label"> Password
+      <input type="password" class="form__input">
+    </label>
+    <label class="form__label"> Repeat Password
+      <input type="password" class="form__input">
+    </label>
+    <button type="submit" class="btn">Register</button>
+    <div class="form__info">
+      Do you have an Account?
+      <a class="" href="/login">Login</a>
+    </div>
+  </form>
+  <div *ngIf="error" class="message message_error">{{error}}</div>
+</div>
+
+

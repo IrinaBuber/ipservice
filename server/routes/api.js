@@ -1,5 +1,7 @@
 const express = require('express');
 const router = express.Router();
+const jwt = require('jsonwebtoken');
+const configJwt = require('../config/jwt');
 const MongoClient = require('mongodb').MongoClient;
 const ObjectID = require('mongodb').ObjectID;
 const dbConfig = require('../config/db');
@@ -30,6 +32,46 @@ let response = {
   message: null
 };
 
+router.post('/auth/login', (req, res) => {
+  connection((db)=>{
+    const user = {
+      username: req.body.username,
+      password: req.body.password
+    };
+    db.collection('users').findOne(user)
+      .then((result) => {
+        const token = jwt.sign({
+          id: result._id,
+          username: result.username
+        }, configJwt.jwtSecret);
+        response.data = { token: token };
+        res.json(response);
+      })
+      .catch((err) => {
+        res.status(401).send({"error": "Username is invalid"});
+      });
+  })
+});
+
+router.post('/auth/signup', (req, res) => {
+  connection((db)=>{
+    const user = {
+      username: req.body.username,
+      password: req.body.password,
+      firstName: req.body.firstName,
+      lastName: req.body.lastName,
+      email: req.body.email
+    };
+    db.collection('users').findOne(user)
+      .then((result) => {
+        if(!result){
+          db.collection('users').insertOne(user)
+        }
+        res.status(401).send({"error": "Username is unavailable"});
+      })
+
+  })
+});
 // Get users
 router.get('/users', (req, res) => {
   connection((db) => {
